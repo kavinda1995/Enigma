@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { AutoCompleteModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-music-search',
   templateUrl: './music-search.component.html',
   styleUrls: ['./music-search.component.css']
 })
-export class MusicSearchComponent implements OnInit {
+export class MusicSearchComponent {
 
-  constructor() { }
+  constructor(
+    public acm: AutoCompleteModule
+  ) { }
 
-  ngOnInit() {
+  track: string;
+  @Input() tracks: any[];
+
+  @Output() update = new EventEmitter();
+  @Output() query = new EventEmitter();
+
+  search(event) {
+    this.query.emit(event.query);
+  }
+
+  select(track) {
+    this.update.emit(track);
   }
 
 }
