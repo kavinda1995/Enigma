@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const { mongoose } = require('./db.js');
 var userController = require('./controllers/userController');
 
+var jwt = require('jsonwebtoken');
+var config = require('./configs/config.js'); // auth config
+
 var app = express();
 app.use(bodyParser.json());
 

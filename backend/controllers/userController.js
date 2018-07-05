@@ -3,6 +3,10 @@ var router = express.Router();
 
 var { User } = require('../models/userModel');
 
+var jwt = require('jsonwebtoken');
+var config = require('../configs/config.js'); // auth config
+
+
 
 // => localhost:3000/user/register/  -------> Registration
 
@@ -40,8 +44,16 @@ router.post('/register',function(req,res){
             if(!user){
                 return res.status(404).send();
             }
-
-            return res.status(200).send(user._id);
+            const payload = {
+                admin: user.username 
+              };
+                  var token = jwt.sign(payload,'config.secret', {
+                      
+                    //expiresInMinutes: 1440 // expires in 24 hours
+                  });
+                  console.log(config.secret);
+                  
+            return res.status(200).send(token);
         })
 
     });
