@@ -32,7 +32,6 @@ export class AppComponent {
     console.log(this.position);
     this.selectTrack();
     this.sound.play();
-    this.sound.onEnd(this.next);
   }
 
   next() {
