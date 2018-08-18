@@ -4,11 +4,15 @@ const bodyParser = require('body-parser');
 const { mongoose } = require('./db.js');
 var userController = require('./controllers/userController');
 
+var jwt = require('jsonwebtoken');
+var config = require('./configs/config.js'); // auth config
+
 var app = express();
 app.use(bodyParser.json());
 
 app.listen(3000,() => console.log('Server started on port : 3000'));
 
 
-app.use('/register', userController);
+app.use('/user', userController);
+app.use('/user', userController);
 
