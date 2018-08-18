@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
   sound;
+  playing: Boolean = false;
 
   songs = [
     'https://www.music.lk/starter.php?file_id=21439&file_path=www.mlk1.info/audio/71000/starter.php?file=&file_name=Kumariya-Numba-Harinda-Samarasekara-Music.lk.mp3',
@@ -29,9 +30,15 @@ export class AppComponent {
   }
 
   play() {
-    console.log(this.position);
-    this.selectTrack();
-    this.sound.play();
+    if (this.playing !== true) {
+      console.log(this.position);
+      this.selectTrack();
+      this.sound.play();
+      this.playing = true;
+    } else {
+      this.sound.stop();
+      this.playing = false;
+    }
   }
 
   next() {
