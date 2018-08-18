@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'app';
   sound;
 
-  songs:array = [
+  songs = [
     'https://www.music.lk/starter.php?file_id=21439&file_path=www.mlk1.info/audio/71000/starter.php?file=&file_name=Kumariya-Numba-Harinda-Samarasekara-Music.lk.mp3',
     'http://ananmanan1.com/mp3/201411/Daddy_Aradhana_ananmanan.lk.mp3',
     'http://topbadu.net/sinhala_mp3/BnS_Mal_Pan_Podak.mp3'
@@ -32,6 +32,7 @@ export class AppComponent {
     console.log(this.position);
     this.selectTrack();
     this.sound.play();
+    this.sound.onEnd(this.next);
   }
 
   next() {
