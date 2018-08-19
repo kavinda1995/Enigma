@@ -12,12 +12,13 @@ export class AppComponent {
   playing: Boolean = false;
 
   songs = [
-    'https://www.music.lk/starter.php?file_id=21439&file_path=www.mlk1.info/audio/71000/starter.php?file=&file_name=Kumariya-Numba-Harinda-Samarasekara-Music.lk.mp3',
-    'http://ananmanan1.com/mp3/201411/Daddy_Aradhana_ananmanan.lk.mp3',
-    'http://topbadu.net/sinhala_mp3/BnS_Mal_Pan_Podak.mp3'
+    'http://34.238.149.235/EnigmaMusic/Daddy_Aradhana_ananmanan.lk.mp3',
+    'http://34.238.149.235/EnigmaMusic/Kumariya-Numba-Harinda-Samarasekara-Music.lk.mp3',
+    'http://34.238.149.235/EnigmaMusic/BnS_Mal_Pan_Podak.mp3'
   ];
 
   position = 1;
+  duration = 0;
 
   constructor() {
   }
@@ -25,7 +26,13 @@ export class AppComponent {
   selectTrack() {
     this.sound = new Howl({
       src: [this.songs[this.position - 1]],
-      html5 : true
+      html5 : true,
+      onend: () => {
+        this.next();
+      },
+      onload: () => {
+        this.duration = this.sound._duration;
+      }
     });
   }
 
@@ -43,12 +50,28 @@ export class AppComponent {
 
   next() {
     this.sound.stop();
+    this.playing = false;
     if (this.position === 3) {
       this.position = 1;
     } else {
       this.position = this.position + 1;
     }
     this.play();
+  }
+
+  previous() {
+    this.sound.stop();
+    this.playing = false;
+    if (this.position === 1) {
+      this.position = 3;
+    } else {
+      this.position = this.position - 1;
+    }
+    this.play();
+  }
+
+  getLength() {
+    this.sound.length();
   }
 
 }

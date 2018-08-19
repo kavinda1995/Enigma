@@ -20,7 +20,7 @@
                   <use xlink:href="#repeat"></use>
               </svg>
           </li>
-          <li class="control" (click)="play()">
+          <li class="control" (click)="previous()">
               <svg class="icon" viewbox="0 0 100 100" >
                   <use xlink:href="#skip-back"></use>
               </svg>
@@ -52,7 +52,7 @@
               </svg>
           </li>
       </ul>
-      <h2>Playing : {{ playing }} </h2>
+      <h2>Playing : {{ playing }} / Duration : {{ duration }} </h2>
       <div class="player__volume">
           <div class="player__volume__icon">
               <svg class="icon" viewbox="0 0 100 100">
