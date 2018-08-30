@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { AutoCompleteModule } from 'primeng/primeng'; // PrimeNG plugin for autocomplete the search
+import { Routes, RouterModule} from '@angular/router';
 
 // Custom imports
 import { MusicSearchComponent } from './music-search/music-search.component';
@@ -14,6 +15,9 @@ import { MusicFooterComponent } from './music-footer/music-footer.component';
 import { MusicService } from './shared/music.service';
 import { ApiService } from './shared/api.service';
 
+const routes: Routes = [
+  { path: 'player', component: MusicPlayerComponent },
+];
 
 @NgModule({
   imports: [
@@ -45,4 +49,8 @@ import { ApiService } from './shared/api.service';
     MusicService
   ],
 })
+
+
+
+
 export class MusicModule { }

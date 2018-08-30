@@ -13,7 +13,11 @@ import { Router, Routes } from '@angular/router';
 export class AppRoutingModule {
 
   routes: Routes = [
-    { path: 'player', component: MusicPlayerComponent }
+    { path: 'player', component: MusicPlayerComponent },
+    {
+      path         : 'admin',
+      loadChildren : 'app/music/music.module#MusicModule'
+    },
   ];
 
 }

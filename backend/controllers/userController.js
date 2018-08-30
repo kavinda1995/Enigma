@@ -12,13 +12,13 @@ var config = require('../configs/config.js'); // auth config
 
 router.post('/register',function(req,res){
     var newuser = new User({
-        
+
         username: req.body.username,
         password:req.body.password,
         email: req.body.email,
-        
+
     });
-       
+
     newuser.save(function(err,savedUser){
         if(err){
             console.log(err);
@@ -31,7 +31,7 @@ router.post('/register',function(req,res){
 // => localhost:3000/user/login/  -------> Login
 
     router.post('/login',function(req,res){
-       
+
         var username = req.body.username;
         var password = req.body.password;
 
@@ -45,18 +45,17 @@ router.post('/register',function(req,res){
                 return res.status(404).send();
             }
             const payload = {
-                admin: user.username 
+                admin: user.username
               };
-                  var token = jwt.sign(payload,'config.secret', {
-                      
+                  var token = JSON.stringify(jwt.sign(payload,'config.secret', {
+
                     //expiresInMinutes: 1440 // expires in 24 hours
-                  });
-                  console.log(config.secret);
-                  
+                  }));
+
             return res.status(200).send(token);
         })
 
     });
-       
-    
+
+
 module.exports = router;
