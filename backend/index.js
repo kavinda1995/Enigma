@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 
 const { mongoose } = require('./db.js');
 var userController = require('./controllers/userController');
+var songsController = require('./controllers/songs');
 
 var jwt = require('jsonwebtoken');
 var config = require('./configs/config.js'); // auth config
@@ -26,7 +27,12 @@ app.use(bodyParser.json());
 
 app.listen(3000,() => console.log('Server started on port : 3000'));
 
+//authentication and registration
+app.use('/user', userController);
 
-app.use('/user', userController);
-app.use('/user', userController);
+
+// Songs
+app.use('/songs', songsController);
+
+
 
