@@ -58,7 +58,7 @@ router.post('/register',function(req,res){
     });
 
 
-    // => localhost:3000/user/plays --> count artistPlays and albumPlays
+    // => localhost:3000/user/plays --> count artistPlays
 
     router.post('/plays', (req,res)=>{
         var token = req.headers['x-access-token']; // getting token from request header
@@ -82,16 +82,24 @@ router.post('/register',function(req,res){
                     }
                     else{
                         var artistName = req.body.artistName;
-                        console.log(artistName);
-
-                        if(!artistPlayCount[0].artistPlays[artistName]){ 
+                        var objectArray = artistPlayCount[0].artistPlays;
                         
+
+                        var hasKey = objectArray.some(function(val) {
+                            return Object.values(val).includes(artistName);
+                          });
+
+                          console.log(hasKey);
+                         
+
+                       if(!hasKey){ 
+                            
                             var query = {};
                             var criteria = artistName;
                             query[criteria] = 1;
                             
 
-                            User.update({$push: {artistPlays: query }}, (err,countCreated)=>{
+                            User.update({$push: {artistPlays: {name : artistName, count: 1} }}, (err,countCreated)=>{
                                 if(err){
                                     console.log(err.message.toString());
                                 }
@@ -100,19 +108,18 @@ router.post('/register',function(req,res){
                                     console.log(countCreated);
                                 }
                             });
-                            /* artistPlay.save((err, addedartistPlay=>{
-                                if(err){
-                                    console.log(err);
-                                    return res.status(500).send(err.message.toString());
-                                }
-
-                                if(addedartistPlay){
-                                    return res.status(200).send();
-                                    consolo.log('artist added'+ artistName);
-                                }
-                            })); */
                         }
-                        
+
+                        if(hasKey){
+                            var currentCount;
+                
+
+                            User.findOneAndUpdate({ "artistPlays.name": artistName },
+                            { $inc: { "artistPlays.$.count" : 1 } },function(err,doc){ })
+                            
+
+                        }
+
                 
 
                     }
