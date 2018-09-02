@@ -5,7 +5,7 @@
   <mat-slide-toggle class="toggleTheme" color="primary" (change)="toggleTheme()"></mat-slide-toggle>
   <button class="create-playlist" *ngIf="user.authenticated" mat-button color="primary" (click)="createPlaylist()"><mat-icon class="primary">playlist_add</mat-icon> Add playlist</button>
   <button mat-button color="primary" *ngIf="loggedIn" [routerLink]="'./user/login'">
-    <mat-icon class="action_icon">person</mat-icon>Logout
+    <mat-icon class="action_icon">person</mat-icon> Logout
   </button>
   <a *ngIf="user.authenticated" class="user_image">
     <img [src]="user.user_image" [alt]="user.username" />
