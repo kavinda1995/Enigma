@@ -7,4 +7,12 @@ export class SharedDataService {
 
   constructor() { }
 
+  setUserSecret(token) {
+    this.userSecret = token;
+  }
+
+  getUserSecret() {
+    return this.userSecret;
+  }
+
 }

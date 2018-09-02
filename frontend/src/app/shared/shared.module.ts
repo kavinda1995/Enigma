@@ -27,6 +27,7 @@ import {
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AuthService } from './services/auth.service';
+import { SharedDataService } from './services/shared-data.service';
 import { PlayerService } from './services/player/player.service';
 
 import { MapToIterable } from './pipes/mapToIterable';
@@ -107,6 +108,7 @@ export class SharedModule {
         AuthService,
         PlayerService,
         PlaylistService,
+        SharedDataService
       ],
     };
   }

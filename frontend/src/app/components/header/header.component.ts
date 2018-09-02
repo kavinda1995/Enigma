@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from './../../store/models/user.model';
+import { AuthService } from './../../shared/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -15,13 +17,21 @@ export class HeaderComponent implements OnInit {
   @Output() onToggleSidenav = new EventEmitter();
   @Output() onToggleTheme = new EventEmitter();
 
-  constructor() { }
+  loggedIn: boolean;
+
+  constructor(private auth: AuthService,
+              private router: Router,
+              private ngZone: NgZone) { }
 
   ngOnInit() {
+    this.loggedIn = this.auth.getLoggedIn();
   }
 
   logout() {
-    this.onLogout.emit();
+    this.auth.removeLoggedIn();
+    this.ngZone.run(() => {
+      this.router.navigateByUrl('/user/login');
+    });
   }
 
   createPlaylist() {

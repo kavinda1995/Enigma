@@ -14,6 +14,7 @@ import { State } from './../../store/index';
 export class AuthService {
 
   private _user: firebase.User;
+  loggedIn = false;
 
   constructor(public afAuth: AngularFireAuth,
     private db: AngularFireDatabase,
@@ -22,6 +23,18 @@ export class AuthService {
     afAuth.authState.subscribe((user) => {
       this.setUser(user);
     });
+  }
+
+  setLoggedIn() {
+    this.loggedIn = true;
+  }
+
+  removeLoggedIn() {
+    this.loggedIn = false;
+  }
+
+  getLoggedIn() {
+    return this.loggedIn;
   }
 
   setUser(user) {
