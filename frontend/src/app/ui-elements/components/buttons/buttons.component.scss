@@ -1,0 +1,6 @@
+.mat-fab,
+.mat-mini-fab {
+    & /deep/ .mat-icon {
+        color: currentColor;
+    }
+}

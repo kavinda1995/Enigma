@@ -1,0 +1,83 @@
+@import "./../../../../styles/settings/breakpoints.scss";
+@import "./../../../../styles/settings/colors.scss";
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-title {
+    margin-left: 10px;
+}
+
+.main-title {
+  color: #e91e63;
+  font-weight: 300;
+  font-size: 2em;
+}
+
+.subtext {
+    margin-bottom: 2rem;
+    @include breakpoint($narrow-devices) {
+        max-width: 70%;
+        text-align: center;
+        line-height: 1.7rem;
+        font-size: 1.2rem;
+    }
+}
+
+.main-logo {
+    text-decoration: none;
+    color: currentColor;
+    display: none;
+    @include breakpoint($narrow-devices) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+}
+
+.form-container {
+    @include breakpoint($narrow-devices) {
+        margin-top: 10px;
+    }
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include breakpoint($narrow-devices) {
+        margin-top: 10px;
+        padding: 4rem;
+    }
+}
+
+.login-button {
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include breakpoint($narrow-devices) {
+        margin-top: 10px;
+        padding: 1rem;
+    }
+}
+
+button {
+  background-color: #e91e63;
+  color: white;
+}
+
+.register-yet {
+  font-weight: 300;
+  size: 0.2em;
+}
+
+.registerBtn {
+  background-color: darkcyan;
+  color: white;
+}
