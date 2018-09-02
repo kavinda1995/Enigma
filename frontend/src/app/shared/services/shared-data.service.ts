@@ -12,7 +12,7 @@ export class SharedDataService {
   }
 
   getUserSecret() {
-    return this.userSecret;
+    return this.userSecret.toString();
   }
 
 }

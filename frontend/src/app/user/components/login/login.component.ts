@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
     };
 
     this.http.post('http://localhost:3000/user/login', userData).subscribe(data => {
+      console.log(data);
       this.shared.setUserSecret(data);
       this.auth.setLoggedIn();
       this.ngZone.run(() => {

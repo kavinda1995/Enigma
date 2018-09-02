@@ -4,7 +4,9 @@ import { State } from './../../store/index';
 import { Store } from '@ngrx/store';
 import { Artist } from './../../store/models/artist.model';
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SharedDataService } from '../../shared/services/shared-data.service';
 
 import { ArtistStateType } from './../../store/reducers/artists.reducer';
 
@@ -16,9 +18,17 @@ import { ArtistStateType } from './../../store/reducers/artists.reducer';
 export class ArtistListComponent implements OnInit {
   filters: Observable<Filters>;
   artists: Observable<Artist[]>;
+  artistArr: any = [];
   limit = 6;
+  userToken;
 
-  constructor(private store: Store<State>, private router: Router) {
+  constructor(private store: Store<State>,
+              private router: Router,
+              private http: HttpClient,
+              public shared: SharedDataService,
+              private ngZone: NgZone) {
+    this.userToken = this.shared.userSecret;
+    this.getArtistList();
     this.filters = store.select('filters');
     this.artists = store.select('artists').map((artists: ArtistStateType) => {
       return artists.list.map(n => artists.items[n]);
@@ -26,6 +36,19 @@ export class ArtistListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  getArtistList() {
+    this.userToken = this.shared.userSecret;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'x-access-token':  this.userToken
+      })
+    };
+    this.http.get('http://localhost:3000/songs/artists', httpOptions).subscribe(data => {
+      this.artistArr = data;
+    });
   }
 
   handleFiltersChange(filters: Filters): void {

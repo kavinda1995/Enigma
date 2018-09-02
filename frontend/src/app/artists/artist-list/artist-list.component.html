@@ -1,5 +1,14 @@
 <div class="artist-list" infinite-scroll [infiniteScrollContainer]="'.mat-sidenav-content'" [infiniteScrollDistance]="2" [immediateCheck]="true" (scrolled)="incrementListSize()">
-  <div class="artist-item" *ngFor="let artist of artists | async;">
+  <div class="artist-item" *ngFor="let artists of artistArr">
+    <app-card [image]="artists.image" [imageAlt]="artists.name" [linkText]="'See Artist'">
+      <div class="title">
+        <a class="artist-name-link">{{artists.artist}}</a>
+      </div>
+      <div class="subtitle">
+      </div>
+    </app-card>
+  </div>
+  <!-- <div class="artist-item" *ngFor="let artist of artists | async;">
     <app-card [image]="artist.image" [imageAlt]="artist.name" [link]="['/artists', artist.slug]" [linkText]="'See Artist'">
       <div class="title">
         <a [routerLink]="['/artists', artist.slug]" class="artist-name-link">{{artist.name}}</a>
@@ -13,5 +22,5 @@
         </div>
       </div>
     </app-card>
-  </div>
+  </div> -->
 </div>
