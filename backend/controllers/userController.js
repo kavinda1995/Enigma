@@ -58,4 +58,67 @@ router.post('/register',function(req,res){
     });
 
 
+    // => localhost:3000/user/plays --> count artistPlays and albumPlays
+
+    router.post('/plays', (req,res)=>{
+        var token = req.headers['x-access-token']; // getting token from request header
+        if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+    //verify token with the secret
+        jwt.verify(token,config.secret, (err, authenticated)=>{
+            if(err){
+                res.status(500).send({ auth: false, message: 'Authentication Failed!' });
+            }
+
+            if(authenticated){
+                //console.log(authenticated.user);
+
+                User.find({username : authenticated.user},{artistPlays: true},(err,artistPlayCount)=>{
+                    if(err){
+                        return res.status(500).send();
+                    }
+
+                    if(!artistPlayCount){
+                        return res.status(404).send();
+                    }
+                    else{
+                        var artistName = req.body.artistName;
+                        console.log(artistName);
+
+                        if(!artistPlayCount[0].artistPlays[artistName]){ 
+                        
+                            var query = {};
+                            var criteria = artistName;
+                            query[criteria] = 1;
+                            
+
+                            User.update({$push: {artistPlays: query }}, (err,countCreated)=>{
+                                if(err){
+                                    console.log(err.message.toString());
+                                }
+
+                                else if(countCreated){
+                                    console.log(countCreated);
+                                }
+                            });
+                            /* artistPlay.save((err, addedartistPlay=>{
+                                if(err){
+                                    console.log(err);
+                                    return res.status(500).send(err.message.toString());
+                                }
+
+                                if(addedartistPlay){
+                                    return res.status(200).send();
+                                    consolo.log('artist added'+ artistName);
+                                }
+                            })); */
+                        }
+                        
+                
+
+                    }
+                }) ;
+            }
+    });
+});
+
 module.exports = router;
