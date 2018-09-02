@@ -35,6 +35,11 @@ export class AppComponent implements OnInit {
 
   singlePages = [
     '/user/login',
+    '/player'
+  ];
+
+  playerHidePages = [
+    '/player'
   ];
 
   constructor(private auth: AuthService,

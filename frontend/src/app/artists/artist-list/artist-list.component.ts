@@ -27,19 +27,21 @@ export class ArtistListComponent implements OnInit {
               private http: HttpClient,
               public shared: SharedDataService,
               private ngZone: NgZone) {
-    this.userToken = this.shared.userSecret;
+    // this.userToken = this.shared.userSecret;
     this.getArtistList();
-    this.filters = store.select('filters');
-    this.artists = store.select('artists').map((artists: ArtistStateType) => {
-      return artists.list.map(n => artists.items[n]);
-    });
+    // this.filters = store.select('filters');
+    // this.artists = store.select('artists').map((artists: ArtistStateType) => {
+    //   return artists.list.map(n => artists.items[n]);
+    // });
   }
 
   ngOnInit() {
+    // this.userToken = this.shared.userSecret;
+    this.getArtistList();
   }
 
   getArtistList() {
-    this.userToken = this.shared.userSecret;
+    this.userToken = localStorage.getItem('userSecret');
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -51,19 +53,19 @@ export class ArtistListComponent implements OnInit {
     });
   }
 
-  handleFiltersChange(filters: Filters): void {
-    this.router.navigate(['/artists', this.createParams(filters)]);
-  }
+  // handleFiltersChange(filters: Filters): void {
+  //   this.router.navigate(['/artists', this.createParams(filters)]);
+  // }
 
-  private createParams(filters: Filters): Params {
-    const r: any = {};
-    if (filters.limit) { r.limit = filters.limit; }
-    return r;
-  }
+  // private createParams(filters: Filters): Params {
+  //   const r: any = {};
+  //   if (filters.limit) { r.limit = filters.limit; }
+  //   return r;
+  // }
 
-  incrementListSize() {
-    this.handleFiltersChange({
-      limit: this.limit * 2
-    });
-  }
+  // incrementListSize() {
+  //   this.handleFiltersChange({
+  //     limit: this.limit * 2
+  //   });
+  // }
 }

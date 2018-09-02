@@ -9,6 +9,7 @@ export class SharedDataService {
 
   setUserSecret(token) {
     this.userSecret = token;
+    localStorage.setItem('userSecret', token);
   }
 
   getUserSecret() {
