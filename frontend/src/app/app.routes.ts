@@ -1,3 +1,4 @@
+import { SelectComponent } from './select/select/select.component';
 export const routes = [
     { path: '', redirectTo: 'user', pathMatch: 'full' },
     { path: 'artists', loadChildren: './artists/artists.module#ArtistsModule' },
@@ -5,4 +6,5 @@ export const routes = [
     { path: 'queue', loadChildren: './queue/queue.module#QueueModule' },
     { path: 'user', loadChildren: './user/user.module#UserModule' },
     { path: 'ui', loadChildren: './ui-elements/ui-elements.module#UiElementsModule' },
+    { path: 'select', component:SelectComponent}
 ];

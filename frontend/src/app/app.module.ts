@@ -32,6 +32,7 @@ import { routes } from './app.routes';
 import { PlaylistCreateComponent } from './components/playlist-create/playlist-create.component';
 import { PlaylistAddSongComponent } from './components/playlist-add-song/playlist-add-song.component';
 import { ArtistsStaticEffects } from './store/effects/static/artists.effects';
+import { SelectComponent } from './select/select/select.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ArtistsStaticEffects } from './store/effects/static/artists.effects';
     SidebarComponent,
     PlaylistCreateComponent,
     PlaylistAddSongComponent,
+    SelectComponent
   ],
   entryComponents: [
     PlaylistCreateComponent,
