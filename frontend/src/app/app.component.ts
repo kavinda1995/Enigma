@@ -31,10 +31,10 @@ export class AppComponent implements OnInit {
 
   user: Observable<User>;
 
-  singlePage = false;
+  singlePage = true;
 
   singlePages = [
-    '/user/login'
+    '/user/login',
   ];
 
   constructor(private auth: AuthService,
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         if (!this.isMobile()) {
-          this.singlePages.includes(event.url) ? this.singlePage = true : this.singlePage = false;
+          this.singlePages.includes(event.urlAfterRedirects) ? this.singlePage = true : this.singlePage = false;
           this.singlePage ? this.sidenav.close() : this.sidenav.open();
         }
       }

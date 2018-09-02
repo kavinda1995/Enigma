@@ -1,0 +1,13 @@
+{
+    "userID" : {
+        "genre" : {
+            "Rock" : 1,
+            "POP" : 2,
+            "Rap" : 5
+        },
+        "artists" : {
+            "daddy" : 3,
+            "harinda" : 10
+        }
+    }
+}

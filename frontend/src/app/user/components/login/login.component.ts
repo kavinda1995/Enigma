@@ -2,10 +2,10 @@ import { AuthService } from './../../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from 'firebase/app';
-import { SharedDataService } from '../../../shared/services/shared-data.service';
+// import { User } from 'firebase/app';
+// import { SharedDataService } from '../../../shared/services/shared-data.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -37,8 +37,7 @@ export class LoginComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(private auth: AuthService,
-              private http: HttpClient,
-              private shared: SharedDataService) { }
+              private http: HttpClient) { }
 
   ngOnInit() {
   }

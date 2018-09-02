@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { UnAuthGuard } from './guards/unauth.guard';
 
 export const routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, pathMatch: 'full', canActivate: [UnAuthGuard] },
 ];
 
