@@ -45,12 +45,12 @@ router.post('/register',function(req,res){
                 return res.status(404).send();
             }
             const payload = {
-                admin: user.username
+                user: user.username,
+                permissions: 'normal user'
+                
               };
-                  var token = JSON.stringify(jwt.sign(payload,'config.secret', {
-
-                    //expiresInMinutes: 1440 // expires in 24 hours
-                  }));
+            var token = JSON.stringify(jwt.sign(payload,config.secret));
+                    
 
             return res.status(200).send(token);
         })
