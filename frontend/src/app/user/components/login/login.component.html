@@ -49,7 +49,7 @@
           <mat-row>
               <mat-form-field class="example-full-width" appearance="outline">
                 <input matInput placeholder="Username" [formControl]="usernameFormControl"
-                        [errorStateMatcher]="matcher">
+                        [errorStateMatcher]="matcher" [(ngModel)]="user.username">
                 <mat-hint>Username</mat-hint>
                 <mat-error *ngIf="usernameFormControl.hasError('email') && !emailFormControl.hasError('required')">
                   Please enter a username
@@ -63,7 +63,7 @@
           <mat-row>
               <mat-form-field class="example-full-width" appearance="outline">
                   <input matInput placeholder="Password" type="password" [formControl]="usernameFormControl"
-                        [errorStateMatcher]="matcher">
+                        [errorStateMatcher]="matcher" [(ngModel)]="user.password">
                 <mat-hint>Password</mat-hint>
                 <mat-error *ngIf="usernameFormControl.hasError('required')">
                   Password is <strong>required</strong>
@@ -74,7 +74,7 @@
           <mat-row>
               <mat-form-field class="example-full-width" appearance="outline">
                   <input matInput placeholder="Confirm Password" type="password" [formControl]="usernameFormControl"
-                        [errorStateMatcher]="matcher">
+                        [errorStateMatcher]="matcher" [(ngModel)]="user.cpassword">
                 <mat-hint>Confirm Password</mat-hint>
                 <mat-error *ngIf="usernameFormControl.hasError('required')">
                   Confirm Password is <strong>required</strong>
@@ -85,7 +85,7 @@
           <mat-row>
               <mat-form-field class="example-full-width" appearance="outline">
                   <input matInput placeholder="Email" type="email" [formControl]="usernameFormControl"
-                        [errorStateMatcher]="matcher">
+                        [errorStateMatcher]="matcher" [(ngModel)]="user.email">
                 <mat-hint>Email</mat-hint>
                 <mat-error *ngIf="usernameFormControl.hasError('required')">
                   Email is <strong>required</strong>
@@ -94,7 +94,7 @@
           </mat-row>
           <br>
           <mat-row class="login-button">
-            <button mat-raised-button class="registerBtn">REGISTER</button>
+            <button mat-raised-button class="registerBtn" (click)="register()">REGISTER</button>
             <p class="register-yet">Already registered?</p>
             <button mat-raised-button (click)="openLogin()">LOGIN</button>
           </mat-row>

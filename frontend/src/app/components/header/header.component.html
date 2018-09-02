@@ -2,7 +2,7 @@
   <button class="toggleSidenav" (click)="toggleSidenav()"><mat-icon color="primary">menu</mat-icon></button>
   <a class="main-logo" [routerLink]="'/'"><mat-icon color="primary">adjust</mat-icon><span class="app-title"> {{title}}</span></a>
   <span class="spacer"></span>
-  <mat-slide-toggle class="toggleTheme" color="primary" (change)="toggleTheme()"></mat-slide-toggle>
+  <mat-slide-toggle class="toggleTheme" color="primary" (change)="toggleTheme()">Dark Mode</mat-slide-toggle>
   <button class="create-playlist" *ngIf="user.authenticated" mat-button color="primary" (click)="createPlaylist()"><mat-icon class="primary">playlist_add</mat-icon> Add playlist</button>
   <button mat-button color="primary" *ngIf="loggedIn" [routerLink]="'./user/login'">
     <mat-icon class="action_icon">person</mat-icon> Logout

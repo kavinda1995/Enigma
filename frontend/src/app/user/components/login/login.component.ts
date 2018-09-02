@@ -80,5 +80,34 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  register() {
+    if (this.user.password === this.user.cpassword) {
+      const userData = {
+        username: this.user.username,
+        password: this.user.password,
+        email: this.user.email
+      };
+
+      this.http.post('http://localhost:3000/user/register', userData).subscribe(data => {
+        alert('Registration Completed');
+        this.ngZone.run(() => {
+          this.router.navigateByUrl('/user');
+        });
+      }, error => {
+        if (error.status !== 200) {
+          alert('Error :' + error.toString());
+        }else {
+          alert('Registration Completed');
+          this.ngZone.run(() => {
+            this.router.navigateByUrl('/user');
+          });
+        }
+      });
+
+    }else {
+      alert('Passwords dont match');
+    }
+  }
+
 
 }
