@@ -42,11 +42,8 @@ import { SelectComponent } from './select/select/select.component';
     SidebarComponent,
     PlaylistCreateComponent,
     PlaylistAddSongComponent,
-<<<<<<< HEAD
     PlayerComponent,
-=======
     SelectComponent
->>>>>>> b56b50343a43b90a98c50cb18df9566a186ecb3a
   ],
   entryComponents: [
     PlaylistCreateComponent,

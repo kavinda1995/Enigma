@@ -34,6 +34,7 @@ export class ArtistsAlbumService {
    *  the song to play.
    */
   playSong(song: Song) {
+    console.log('play');
     this.player.createPlayListOfSong(song);
   }
 

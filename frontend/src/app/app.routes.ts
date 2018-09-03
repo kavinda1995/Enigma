@@ -1,4 +1,4 @@
-import {PlayerComponent } from './player/player.component';
+import { PlayerComponent } from './player/player.component';
 import { SelectComponent } from './select/select/select.component';
 
 export const routes = [

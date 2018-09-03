@@ -37,7 +37,7 @@ export class ArtistListComponent implements OnInit {
 
   ngOnInit() {
     // this.userToken = this.shared.userSecret;
-    this.getArtistList();
+    // this.getArtistList();
   }
 
   getArtistList() {
