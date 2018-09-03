@@ -71,7 +71,7 @@ router.post('/register',function(req,res){
 
             if(authenticated){
                 //console.log(authenticated.user);
-
+`   `
                 User.find({username : authenticated.user},{artistPlays: true},(err,artistPlayCount)=>{
                     if(err){
                         return res.status(500).send();
@@ -121,7 +121,7 @@ router.post('/register',function(req,res){
                         }
 
                 
-
+                        res.status(200).send();
                     }
                 }) ;
             }

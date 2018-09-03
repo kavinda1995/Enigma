@@ -166,19 +166,19 @@ export class ArtistDetailComponent implements OnInit, OnDestroy {
    * Play this album
    */
   playAlbum() {
-    this.albumService.playAlbum(this.album, this.songs);
+    this.albumService.playAlbum(this.albums, this.songs);
   }
 
   /**
    * Add song to a playlist.
    */
-  addSongToPlaylist(song: Song) {
+  /* addSongToPlaylist(song: Song) {
     this.onAddSong.emit(song);
   }
 
   ngOnDestroy() {
     this.artistSubscription.unsubscribe();
-  }
+  } */
 
   /**
    * Add song to playlist.

@@ -50,6 +50,7 @@ export class ArtistListComponent implements OnInit {
     };
     this.http.get('http://localhost:3000/songs/artists', httpOptions).subscribe(data => {
       this.artistArr = data;
+      console.log(this.artistArr);
     });
   }
 

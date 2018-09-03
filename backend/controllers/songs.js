@@ -5,9 +5,8 @@ var { Songs } = require('../models/songsModel');
 var jwt = require('jsonwebtoken');
 var config = require('../configs/config.js');
 
-var verifiedJwt = 
 
-// => localhost:3000/songs/  -------> Registration
+// => localhost:3000/songs/  
 router.post('/artistSongs', (req,res) => {
     var token = req.headers['x-access-token']; // getting token from request header
 
