@@ -33,6 +33,7 @@ import { PlaylistCreateComponent } from './components/playlist-create/playlist-c
 import { PlaylistAddSongComponent } from './components/playlist-add-song/playlist-add-song.component';
 import { ArtistsStaticEffects } from './store/effects/static/artists.effects';
 import { PlayerComponent } from './player/player.component';
+import { SelectComponent } from './select/select/select.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { PlayerComponent } from './player/player.component';
     PlaylistCreateComponent,
     PlaylistAddSongComponent,
     PlayerComponent,
+    SelectComponent
   ],
   entryComponents: [
     PlaylistCreateComponent,

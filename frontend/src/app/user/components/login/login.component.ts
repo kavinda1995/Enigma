@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
         }else {
           alert('Registration Completed');
           this.ngZone.run(() => {
-            this.router.navigateByUrl('/user');
+            this.router.navigateByUrl('/select');
           });
         }
       });

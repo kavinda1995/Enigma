@@ -121,9 +121,11 @@ export class PlayerService {
    *  The sound id to play.
    */
   playSong(id) {
+    console.log(this.songList);
+    let src = [id.url];
     this.stop();
     this.player = new Howl({
-      src: this.songList[id].url,
+      src: src[0],
       html5: true,
       volume: this.volume,
     });

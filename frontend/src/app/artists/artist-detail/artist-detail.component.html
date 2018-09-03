@@ -1,96 +1,49 @@
 <div class="artist" *ngIf="artist">
   <div class="artist-banner">
     <div class="arist-banner-name">
-      <h1>{{artist.name}}</h1>
+      <h1>{{artist.artist}}</h1>
       <div class="about">{{artist.about}}</div>
       <a [color]="'primary'" mat-button mat-raised-button [routerLink]="'/'">
         <mat-icon>play_circle_outline</mat-icon> Play songs</a>
     </div>
-    <img [src]="artist.image" [alt]="artist.name" [title]="artist.name" />
+    <img [src]="artist.image" [alt]="artist.artist" [title]="artist.artist" />
   </div>
   <div class="artist-content">
     <div class="albums">
       <h3>
-        <mat-icon color="accent">album</mat-icon> {{artist.name}} Albums</h3>
-      <app-artist-album-list [artist]="artist" [albums]="albums | async" (onAddSong)="addSongToPlaylist($event)"></app-artist-album-list>
-    </div>
-    <div class="side-blocks">
-      <div class="block">
-        <mat-card>
-          <mat-card-header>
-            <h3 class="title">
-              <mat-icon color="primary">people</mat-icon> Following this artist
-            </h3>
-          </mat-card-header>
-          <mat-card-content>
-            <ul class="list-followers">
-              <li>
-                <img src="assets/images/user.png" alt="" />
-              </li>
-              <li>
-                <img src="assets/images/team1.jpg" alt="" />
-              </li>
-              <li>
-                <img src="assets/images/team2.jpg" alt="" />
-              </li>
-              <li>
-                <img src="assets/images/team3.jpg" alt="" />
-              </li>
-              <li>
-                <img src="assets/images/team4.jpg" alt="" />
-              </li>
-              <li>
-                <img src="assets/images/team5.jpg" alt="" />
-              </li>
-              <li>
-                <img src="assets/images/team6.jpg" alt="" />
-              </li>
-              <li>
-                <img src="assets/images/team3.jpg" alt="" />
-              </li>
-              <li>
-                <img src="assets/images/team4.jpg" alt="" />
-              </li>
-              <li>
-                <img src="assets/images/team5.jpg" alt="" />
-              </li>
-            </ul>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div class="block">
-        <mat-card>
-          <mat-card-header>
-            <h3 class="title">
-              <mat-icon color="primary">attach_money</mat-icon> Sales / Country
-            </h3>
-          </mat-card-header>
-          <mat-card-content>
-            <app-artist-country-fan-chart></app-artist-country-fan-chart>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div class="block">
-        <mat-card>
-          <mat-card-header>
-            <h3 class="title">
-              <mat-icon color="primary">done_all</mat-icon> Categories
-            </h3>
-          </mat-card-header>
-          <mat-card-content class="categories-list">
-            <mat-chip-list>
-              <mat-chip>Jazz</mat-chip>
-              <mat-chip>House</mat-chip>
-              <mat-chip>Country</mat-chip>
-              <mat-chip>Reggae</mat-chip>
-              <mat-chip>House / Jazz</mat-chip>
-              <mat-chip>Hip Hop</mat-chip>
-              <mat-chip>Cascaton</mat-chip>
-              <mat-chip>Reggaton</mat-chip>
-            </mat-chip-list>
-          </mat-card-content>
-        </mat-card>
-      </div>
+        <mat-icon color="accent">album</mat-icon> {{artist.artist}}'s Tracks</h3>
+        <div class="albums">
+          <div class="artist-album" *ngFor="let track of tracks;">
+            <app-playable-list [image]="track.image" [title]="track.name" (onPlayall)="playAlbum()" (click)="playSong(track.name, track.link, track.image)">
+
+              <div class="play-actions">
+                <mat-icon class="mat-24" aria-label="Share">share</mat-icon>
+                <mat-icon class="mat-24" aria-label="like">settings_backup_restore</mat-icon>
+                <mat-icon class="mat-24" aria-label="like">favorite_border</mat-icon>
+              </div>
+              <ng-template let-song>
+                <button class="add-to-playlist-button" mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button *ngIf="(user | async).authenticated" mat-menu-item (click)="addSongToPlaylist(song)">
+                    <mat-icon>playlist_add</mat-icon>
+                    <span>Add to playlist</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>tap_and_play</mat-icon>
+                    <span>Play on device</span>
+                  </button>
+                </mat-menu>
+              </ng-template>
+            </app-playable-list>
+            <button (click)="playSong(track.name, track.link, track.image)" >Play</button>
+          </div>
+        </div>
+        <ng-template #noalbums>
+          <div class="empty">Artist has no albums.</div>
+        </ng-template>
+
     </div>
   </div>
 </div>
